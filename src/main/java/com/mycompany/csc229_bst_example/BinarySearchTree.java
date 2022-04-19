@@ -8,6 +8,7 @@ import java.util.Queue;
 
 public class BinarySearchTree {
     private BstNode root;
+    private int HeightCount;
 
     public boolean isEmpty() {
         return (this.root == null);
@@ -55,30 +56,63 @@ public class BinarySearchTree {
     }
 
     private void doInOrder(BstNode root) {
-
+        if (root == null) {
+            return;
+        }
+        doInOrder(root.getLeft());
+        System.out.println(root.getData());
+        doInOrder(root.getRight());
         // ToDo 1: complete InOrder Traversal 
     }
-        public void preOrderTraversal() {
-        doPreOrder(this.root);
+    
+    private void doPreOrder(BstNode root) {
+        if (root == null) {
+            return;
+        }
+        System.out.println(root.getData());
+        doPreOrder(root.getLeft());
+        doPreOrder(root.getRight());
         // ToDo 2: complete the pre-order travesal . 
+    }
+    
+    public void preOrderTraversal() {
+        doPreOrder(this.root); 
     }
 
     public Integer findHeight() {
-
+        
+        return doFindHeight(this.root);
         // ToDo 3: Find the height of a tree
     }
-
+    
+    private Integer doFindHeight(BstNode root){
+        
+        if(root == null)
+            return -1;
+        return Math.max(
+                doFindHeight(root.getLeft())    ,
+                doFindHeight(root.getRight())   ) +1;
+    }
+    
     
 
     public int getDepth(BstNode node) {
-        //ToDo 4: complete getDepth of a node 
+        
+        if(root == null)
+            return -1;
+        
+        int Depth = -1;
+        
+        
+        
+        return Depth;
     }
-    
-   public void print() {
+ 
+   /*public void print() {
        System.out.println("\n==== BST Print ===== \n");
         print("", root, false);
         // ToDo 5: complete the print of the BST
-    }
+    }*/
 
 
 }
